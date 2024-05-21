@@ -23,7 +23,6 @@ app.get("/", (req, res) => {
   const path = resolve(process.env.STATIC_DIR + "/index.html");
   res.sendFile(path);
 });
-
 // creating a route for success page:
 app.get("/success", (req, res) => {
   const path = resolve(process.env.STATIC_DIR + "/success.html");
@@ -49,14 +48,13 @@ app.get("/workshop3", (req, res) => {
   const path = resolve(process.env.STATIC_DIR + "/workshops/workshop3.html");
   res.sendFile(path);
 });
-
 // ____________________________________________________________________________________
 
 const domainURL = process.env.DOMAIN;
 app.post("/create-checkout-session/:pid", async (req, res) => {
-  
+
   const priceId = req.params.pid;
-  
+
   const session = await stripe.checkout.sessions.create({
     mode: "payment",
     success_url: `${domainURL}/success?id={CHECKOUT_SESSION_ID}`,
@@ -75,7 +73,6 @@ app.post("/create-checkout-session/:pid", async (req, res) => {
     id: session.id,
   });
 });
-
 // Server listening:
 app.listen(port, () => {
   console.log(`Server listening on port: ${port}`);
