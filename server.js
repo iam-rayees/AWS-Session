@@ -67,6 +67,7 @@ app.post("/create-checkout-session/:pid", async (req, res) => {
       },
     ],
     // allowing the use of promo-codes:
+  
     allow_promotion_codes: true,
   });
   res.json({
